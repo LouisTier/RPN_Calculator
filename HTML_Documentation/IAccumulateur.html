@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>IAccumulateur.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.literal {color: #0000e6}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">C:\Users\Louis\Documents\NetBeansProjects\ProjetJava_Calculatrice\src\modele\IAccumulateur.java</td></tr></table>
+<pre>
+ 1 <span class="comment">/*</span>
+ 2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+ 3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+ 4 <span class="comment"> * and open the template in the editor.</span>
+ 5 <span class="comment"> */</span>
+ 6 <span class="literal">package</span> modele;
+ 7 
+ 8 <span class="literal">public</span> <span class="literal">interface</span> <span class="ST0">IAccumulateur</span> {
+ 9         
+10     <span class="comment">//Pour comprendre le fonctionnement de toutes ces méthodes, on peut regarder le détail dans la classe Accumulateur</span>
+11         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">push</span>();
+12         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">drop</span>();
+13         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">swap</span>();
+14         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">add</span>();
+15         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">sub</span>();
+16         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">mult</span>();
+17         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">div</span>();      
+18         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">neg</span>();      
+19         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">backspace</span>();        
+20         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">accumuler</span>(<span class="literal">char</span> character);  
+21         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">reset</span>();    
+22         
+23 }
+24 
+</pre></body>
+</html>
