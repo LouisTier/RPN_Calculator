@@ -3,7 +3,9 @@
 ## **1. About this project**
 
 The objective of this project was to realize a calculator respecting the **Reverse Polish Notation**.
+
 This is a different calculation method than the conventional one. Indeed, it will allow us to have a real **management of the storage** notably through the concept of *stack* and *accumulator* notably for the order of the operations.
+
 This project also allows us to design a graphical interface quite simply in order to use the **Model-View-Controller (MVC) pattern** by cutting and linking each of our parts.
 
 So we have 3 packages:
@@ -12,12 +14,15 @@ So we have 3 packages:
   3. modele with the classes *Pile*, *Accumulateur* and *IAccumulateur*
 
 The controller side allows to make the **link between the view and the model**.
+
 More precisely, the mathematical aspect is defined in the model part, in particular with the *Accumulateur* class and the various arithmetic operations.
+
 Finally, the visual aspect is defined in the view package with the *InterfaceGraphique* class in order to display to the user all the numerical processing within the *Pile* and *Accumulateur* classes.
 
 Here is a simple and effective example of the principle of inverse Polish notation :
 
-![image](https://user-images.githubusercontent.com/105392989/173841034-09afd109-1eef-4460-9b73-7f4614534720.png)
+![image](https://user-images.githubusercontent.com/105392989/173848897-18db84e6-c6b0-447e-941a-f8f800e56bbb.png)
+
 
 ## **2. Use and basic principles** 
 
@@ -45,6 +50,7 @@ I also propose some additional functionalities:
   - The **decimal point** to operate with decimals and not only with reals
 
 For the memory management, I allow a storage of '**n**' elements so in theory an infinity (modulo the capacities and physical/software resources).
+
 However, I only display the **last 5 values stored** in the stack! These values are displayed **from the most recent to the oldest from bottom to top**.
 
 
