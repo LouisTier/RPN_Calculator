@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Accumulateur.java</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+body {color: #000000; background-color: #ffffff; font-family: monospace}
+pre {color: #000000; background-color: #ffffff; font-family: monospace}
+table {color: #000000; background-color: #e9e8e2; font-family: monospace}
+.ST0 {font-family: monospace; font-weight: bold}
+.comment {color: #969696}
+.ST1 {color: #009900}
+.ST2 {font-family: monospace; font-style: italic}
+.ST3 {color: #009900; font-family: monospace; font-style: italic}
+.literal {color: #0000e6}
+.string {color: #ce7b00}
+-->
+</style>
+</head>
+<body>
+<table width="100%"><tr><td align="center">C:\Users\Louis\Documents\NetBeansProjects\ProjetJava_Calculatrice\src\modele\Accumulateur.java</td></tr></table>
+<pre>
+  1 <span class="comment">/*</span>
+  2 <span class="comment"> * To change this license header, choose License Headers in Project Properties.</span>
+  3 <span class="comment"> * To change this template file, choose Tools | Templates</span>
+  4 <span class="comment"> * and open the template in the editor.</span>
+  5 <span class="comment"> */</span>
+  6 
+  7 <span class="literal">package</span> modele;
+  8 
+  9 <span class="literal">import</span> java.beans.PropertyChangeSupport;
+ 10 <span class="literal">import</span> java.beans.PropertyChangeListener;
+ 11 <span class="literal">import</span> java.util.ArrayList;
+ 12 
+ 13 <span class="literal">public</span> <span class="literal">class</span> <span class="ST0">Accumulateur</span> <span class="literal">implements</span> IAccumulateur{
+ 14         
+ 15         <span class="literal">private</span> String <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+ 16         <span class="literal">private</span> Pile <span class="ST1">memoire</span> = <span class="literal">new</span> Pile();
+ 17         <span class="literal">private</span> String <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>; <span class="comment">//variable qui decrit ce qui est affiche à l&#39;ecran</span>
+ 18         <span class="literal">private</span> PropertyChangeSupport <span class="ST1">pcs</span> = <span class="literal">new</span> PropertyChangeSupport(<span class="literal">t</span><span class="literal">his</span>);
+ 19 
+ 20         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">addPropertyChangeListener</span>(PropertyChangeListener listener) {
+ 21                 <span class="literal">this</span>.<span class="ST1">pcs</span>.addPropertyChangeListener(listener);
+ 22         }
+ 23         
+ 24         @Override
+ 25         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">push</span>(){ <span class="comment">//Pour stocker un chiffre dans notre pile</span>
+ 26 
+ 27                         <span class="ST1">memoire</span>.push(Double.<span class="ST2">parseDouble</span>(<span class="ST1">e</span><span class="ST1">cran</span>)); <span class="comment">// Convertir String to Double</span>
+ 28                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 29                         <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+ 30         }       
+ 31         
+ 32 
+ 33         @Override
+ 34         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">drop</span>() { <span class="comment">//Pour jeter l&#39;ensemble de la pile</span>
+ 35 
+ 36                 <span class="literal">if</span> (<span class="ST1">memoire</span>.size()&lt;1) {
+ 37                         System.<span class="ST3">out</span>.println(<span class="string">&quot;</span><span class="string">Erreur : La pile est deja vide</span><span class="string">&quot;</span>);
+ 38                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 39                         <span class="ST1">erreur</span> = <span class="string">&quot;</span><span class="string">Erreur : La pile est deja vide</span><span class="string">&quot;</span>;
+ 40                 }
+ 41                 <span class="literal">else</span> {
+ 42                         <span class="ST1">memoire</span>.drop();
+ 43                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 44                         <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+ 45                 }
+ 46         }
+ 47         
+ 48 
+ 49         @Override
+ 50         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">swap</span>() { <span class="comment">//Pour échanger les deux derniers éléments de la pile entre eux</span>
+ 51 
+ 52                 <span class="literal">if</span> (<span class="ST1">memoire</span>.size()&lt;2) {
+ 53                         System.<span class="ST3">out</span>.println(<span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour échanger</span><span class="string">&quot;</span>);
+ 54                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 55                         <span class="ST1">erreur</span> = <span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour échanger</span><span class="string">&quot;</span>;
+ 56                     }
+ 57                 <span class="literal">else</span> {
+ 58                         <span class="ST1">memoire</span>.swap();
+ 59                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 60                         <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+ 61                 }
+ 62         }
+ 63         
+ 64 
+ 65         @Override
+ 66         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">add</span>() { <span class="comment">//Pour additioner les deux derniers éléments de la pile</span>
+ 67 
+ 68                 <span class="literal">if</span> (<span class="ST1">memoire</span>.size()&lt;2) {
+ 69                         System.<span class="ST3">out</span>.println(<span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour additionner </span><span class="string">&quot;</span>);
+ 70                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 71                         <span class="ST1">erreur</span> = <span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour additionner </span><span class="string">&quot;</span>;
+ 72                         }
+ 73                 <span class="literal">else</span> {
+ 74                         Double add1 = <span class="ST1">memoire</span>.pop();
+ 75                         Double add2 = <span class="ST1">memoire</span>.pop();  
+ 76                         <span class="ST1">memoire</span>.push(add1+add2);
+ 77                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 78                         <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+ 79                         }
+ 80                 }       
+ 81         
+ 82 
+ 83         @Override
+ 84         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">sub</span>() { <span class="comment">//Pour soustraire les deux derniers éléments de la pile</span>
+ 85 
+ 86                 <span class="literal">if</span> (<span class="ST1">memoire</span>.size()&lt;2) {
+ 87                         System.<span class="ST3">out</span>.println(<span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour soustraire</span><span class="string">&quot;</span>);
+ 88                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 89                         <span class="ST1">erreur</span> = <span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour soustraire</span><span class="string">&quot;</span>;
+ 90                         }
+ 91                 <span class="literal">else</span> {
+ 92                         Double sub2 = <span class="ST1">memoire</span>.pop(); <span class="comment">//On pop bien sub2 en premier car c&#39;est le dernier element</span>
+ 93                         Double sub1 = <span class="ST1">memoire</span>.pop(); 
+ 94                         <span class="ST1">memoire</span>.push(sub1-sub2);
+ 95                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+ 96                         <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+ 97                         }
+ 98                 }       
+ 99         
+100 
+101         @Override
+102         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">mult</span>() { <span class="comment">//Pour multiplier les deux derniers éléments de la pile</span>
+103 
+104                 <span class="literal">if</span> (<span class="ST1">memoire</span>.size()&lt;2) {
+105                         System.<span class="ST3">out</span>.println(<span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour multiplier</span><span class="string">&quot;</span>);
+106                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+107                         <span class="ST1">erreur</span> = <span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour multiplier</span><span class="string">&quot;</span>;
+108                         } 
+109                 <span class="literal">else</span> {
+110                         Double mult1 = <span class="ST1">memoire</span>.pop();
+111                         Double mult2 = <span class="ST1">memoire</span>.pop();  
+112                         <span class="ST1">memoire</span>.push(mult1*mult2);
+113                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+114                         <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+115                 }
+116         }
+117         
+118         @Override
+119         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">div</span>() { <span class="comment">//Pour faire le rapport entre les deux derniers éléments de la pile</span>
+120 
+121                 <span class="literal">if</span> (<span class="ST1">memoire</span>.size()&lt;2) {
+122                         System.<span class="ST3">out</span>.println(<span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour diviser</span><span class="string">&quot;</span>);
+123                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+124                         <span class="ST1">erreur</span> = <span class="string">&quot;</span><span class="string">Erreur : Pas assez d&#39;elements dans la pile pour diviser</span><span class="string">&quot;</span>;
+125                         }
+126                 <span class="literal">else</span> {
+127                         Double den = <span class="ST1">memoire</span>.pop(); <span class="comment">//Même réflexion que pour la soustraction</span>
+128                         Double num = <span class="ST1">memoire</span>.pop();  
+129                         <span class="literal">if</span> (den != 0) { 
+130                                 <span class="ST1">memoire</span>.push(num/den);
+131                                 <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+132                                 <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+133                         }
+134                         <span class="literal">else</span> {
+135                                 System.<span class="ST3">out</span>.println(<span class="string">&quot;</span><span class="string">Erreur : le denominateur est nul donc division impossible</span><span class="string">&quot;</span>);   <span class="comment">//on affiche une erreur si le denominateur est nul</span>
+136                                 <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+137                                 <span class="ST1">erreur</span> = <span class="string">&quot;</span><span class="string">Erreur : le denominateur est nul donc division impossible</span><span class="string">&quot;</span>;
+138                         }
+139                 }
+140         }
+141 
+142         
+143         @Override
+144         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">neg</span>(){ <span class="comment">//Pour prendre l&#39;opposé du dernier chiffre de la pile</span>
+145 
+146                 <span class="literal">if</span> (<span class="ST1">memoire</span>.size()&lt;1) {
+147                         System.<span class="ST3">out</span>.println(<span class="string">&quot;</span><span class="string">Erreur : aucune valeur dans la pile, donc on ne peut rendre négatif</span><span class="string">&quot;</span>);
+148                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+149                         <span class="ST1">erreur</span> = <span class="string">&quot;</span><span class="string">Erreur : aucune valeur dans la pile, donc on ne peut rendre négatif</span><span class="string">&quot;</span>;
+150                         } 
+151                 <span class="literal">else</span> {
+152                         <span class="literal">double</span> neg = <span class="ST1">memoire</span>.pop(); <span class="comment">//Initialisation de la variable</span>
+153                         <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+154                         <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+155                         <span class="literal">if</span> (neg == 0){
+156                                 <span class="ST1">memoire</span>.push(neg); <span class="comment">//On retourne 0 dans dans le cas où on a un 0</span>
+157                                 <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+158                                 <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+159                                 } 
+160                         <span class="literal">else</span> {
+161                                 <span class="ST1">memoire</span>.push(-neg); <span class="comment">//On retourne l&#39;opposé sinon</span>
+162                                 <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+163                                 <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+164                         }
+165                 }
+166         }       
+167         
+168         
+169         @Override
+170         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">backspace</span>() { <span class="comment">//Pour effacer le dernier caractère rentré à l&#39;écran (donc nombre non push)</span>
+171 
+172                 <span class="ST1">ecran</span> = <span class="ST1">ecran</span>.substring(0,<span class="ST1">ecran</span>.length()-1); <span class="comment">//On supprime le dernier élément affiché à l&#39;écran</span>
+173                 
+174         }
+175         
+176         @Override
+177         <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">reset</span>() { <span class="comment">//Pour effacer toutes les données stockées dans la pile, on remet tout à &quot;0&quot; = à rien</span>
+178                 <span class="ST1">memoire</span>.clear();
+179                 <span class="ST1">ecran</span> = <span class="string">&quot;&quot;</span>;
+180                 <span class="ST1">erreur</span> = <span class="string">&quot;&quot;</span>;
+181         }
+182                 
+183         @Override
+184     <span class="literal">public</span> <span class="literal">void</span> <span class="ST0">accumuler</span>(<span class="literal">char</span> character){ <span class="comment">//Permet de mettre à jour l&#39;acccumulateur selon la méthode appelée définie précédemment</span>
+185                  <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">N</span><span class="string">&#39;</span>) {      
+186                 <span class="literal">this</span>.neg();
+187             } 
+188             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">+</span><span class="string">&#39;</span>) {
+189                 <span class="literal">this</span>.add();
+190                 System.<span class="ST3">out</span>.println(res());
+191             } 
+192             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">-</span><span class="string">&#39;</span>) {
+193                 <span class="literal">this</span>.sub();
+194             } 
+195             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">x</span><span class="string">&#39;</span>) {
+196                 <span class="literal">this</span>.mult();
+197             } 
+198             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">/</span><span class="string">&#39;</span>) {
+199                 <span class="literal">this</span>.div();
+200             } 
+201             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">B</span><span class="string">&#39;</span>) { <span class="comment">//B pour Backspace</span>
+202                 <span class="literal">this</span>.backspace();
+203             } 
+204             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">P</span><span class="string">&#39;</span>) { <span class="comment">//P pour Push</span>
+205                 <span class="literal">this</span>.push();
+206             }  
+207             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">S</span><span class="string">&#39;</span>) {
+208                 <span class="literal">this</span>.swap();
+209             } 
+210             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">D</span><span class="string">&#39;</span>) {
+211                 <span class="literal">this</span>.drop();
+212             } 
+213             <span class="literal">else</span> <span class="literal">if</span> (character == <span class="string">&#39;</span><span class="string">R</span><span class="string">&#39;</span>) {
+214                 <span class="literal">this</span>.reset();
+215             } 
+216             <span class="literal">else</span> {
+217                 <span class="ST1">ecran</span> += character; <span class="comment">//Cas où notre caractère correspond à un chiffre</span>
+218             }
+219     }
+220         
+221         <span class="literal">public</span> <span class="literal">double</span> <span class="ST0">res</span>() { <span class="comment">//Pour récupérer le résultat des opérations</span>
+222                 <span class="literal">return</span> <span class="ST1">memoire</span>.get(<span class="ST1">memoire</span>.size()-1); <span class="comment">//On récupère le dernier élément </span>
+223         }
+224            
+225         
+226         <span class="literal">public</span> Pile <span class="ST0">getMemoire</span>() { <span class="comment">//Pour récupérer la mémoire au niveau du controleur et faire le lien avec la partie modèle</span>
+227                 <span class="literal">return</span> <span class="literal">this</span>.<span class="ST1">memoire</span>;
+228         }
+229         
+230 
+231         <span class="literal">public</span> String <span class="ST0">getIndexMemoire</span>(<span class="literal">int</span> n) { <span class="comment">//Nous permet de récuperer les valeurs à stocker et afficher dans la pile </span>
+232                 
+233                 ArrayList&lt;String&gt; liste = <span class="literal">new</span> ArrayList();
+234                 <span class="literal">for</span>(<span class="literal">int</span> i=0;i&lt;n+1;i++) {
+235                         <span class="literal">if</span> (<span class="ST1">memoire</span>.size()&gt;i) {
+236                                 liste.add(<span class="ST1">m</span><span class="ST1">emoire</span>.get(<span class="ST1">memoire</span>.size()-1-i).toString());
+237                         }
+238                         <span class="literal">else</span> {
+239                                 liste.add(<span class="string">&quot;</span><span class="string">&quot;</span>);
+240                         }
+241                 }
+242                 <span class="literal">return</span> liste.get(n);
+243         }
+244         
+245 
+246         
+247         <span class="literal">public</span> String <span class="ST0">getEcran</span>(){ 
+248         <span class="comment">//Permet de faire le lien entre la partie modèle et la partie vue en récupérant</span>
+249         <span class="comment">//ce qui est stocké dans l&#39;attribut écran</span>
+250             <span class="literal">return</span> <span class="literal">this</span>.<span class="ST1">ecran</span>; 
+251         }
+252         
+253         <span class="literal">public</span> String <span class="ST0">getErreur</span>(){ 
+254         <span class="comment">//Permet d&#39;indiquer à l&#39;utilisateur une erreur dans la partie interface</span>
+255             <span class="literal">return</span> <span class="literal">this</span>.<span class="ST1">erreur</span>;
+256         }
+257 
+258          <span class="literal">public</span> String <span class="ST0">resString</span>() { 
+259         <span class="comment">//Pour récupérer le résultat sous forme de String pour l&#39;afficher dans le label</span>
+260                 <span class="literal">return</span> <span class="ST1">memoire</span>.get(<span class="ST1">memoire</span>.size()-1).toString(); 
+261                 <span class="comment">//On récupère le dernier élément </span>
+262         }
+263 }
+264 
+</pre></body>
+</html>
