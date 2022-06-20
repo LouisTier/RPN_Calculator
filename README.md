@@ -53,6 +53,10 @@ For the memory management, I allow a storage of '**n**' elements so in theory an
 
 However, I only display the **last 5 values stored** in the stack! These values are displayed **from the most recent to the oldest from bottom to top**.
 
+Here is our interface after execution : 
+
+![image](https://user-images.githubusercontent.com/105392989/174567763-825b2509-2f0d-4be3-84ff-a93ce4f3af01.png)
+
 
 ## **4. Some ideas to improve and develop this project**
 
