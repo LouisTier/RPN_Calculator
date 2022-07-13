@@ -21,8 +21,9 @@ Finally, the visual aspect is defined in the view package with the *InterfaceGra
 
 Here is a simple and effective example of the principle of inverse Polish notation :
 
-![image](https://user-images.githubusercontent.com/105392989/173848897-18db84e6-c6b0-447e-941a-f8f800e56bbb.png)
-
+<div id="inverse Polish notation" align = "center">
+  <img src="https://user-images.githubusercontent.com/105392989/173848897-18db84e6-c6b0-447e-941a-f8f800e56bbb.png" width="600">
+</div>
 
 ## **2. Use and basic principles** 
 
@@ -55,8 +56,9 @@ However, I only display the **last 5 values stored** in the stack! These values 
 
 Here is our interface after execution : 
 
-![image](https://user-images.githubusercontent.com/105392989/174567763-825b2509-2f0d-4be3-84ff-a93ce4f3af01.png)
-
+<div id="interface" align = "center">
+  <img src="https://user-images.githubusercontent.com/105392989/174567763-825b2509-2f0d-4be3-84ff-a93ce4f3af01.png" width="850">
+</div>
 
 ## **4. Some ideas to improve and develop this project**
 
